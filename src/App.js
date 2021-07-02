@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+
+import Routes from './Routes';
 
 const App = () => {
   return (
-    <>
-      
-    </>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
@@ -17,7 +20,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+
   }
 }
 
