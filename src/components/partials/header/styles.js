@@ -55,10 +55,12 @@ export const HeaderArea = styled.header`
                 padding: 0;
                 list-style: none;
             
-                a {
+                a, button {
                     font-size: 14px;
                     font-weight: 400;
                     color: #000;
+
+                    outline: transparent;
 
                     &:hover {
                         color: #999;
@@ -75,6 +77,12 @@ export const HeaderArea = styled.header`
                             background-color: #e57706;
                         } 
                     }
+                }
+
+                button {
+                    border: none;
+                    background: none;
+                    cursor: pointer;
                 }
             }
         }
