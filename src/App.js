@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
+import GlobalStyle from './globalStyle';
+
 import Routes from './Routes';
 
 import { Template } from './components/MainComponents';
@@ -12,6 +14,7 @@ import Footer from './components/partials/footer';
 const App = () => {
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <Template>
 
         <Header />
