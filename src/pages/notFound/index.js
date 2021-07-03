@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const NotFound = () => {
     return (
         <>
             <h1>Ops!</h1>
@@ -11,4 +11,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default NotFound;
