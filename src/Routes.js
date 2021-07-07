@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
 import About from './pages/about';
 import Signin from './pages/signin';
+import Signup from './pages/signup';
 import NotFound from './pages/notFound';
 
 const Routes = () => {
@@ -20,6 +21,10 @@ const Routes = () => {
 
             <Route exact path="/signin">
                 <Signin />
+            </Route>
+
+            <Route exact path="/signup">
+                <Signup />
             </Route>
 
             <Route>
