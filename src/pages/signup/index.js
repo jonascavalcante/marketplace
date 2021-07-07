@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainComponents';
 import { PageArea } from './styles';
@@ -11,13 +11,23 @@ const Signin = () => {
     const api = useAPI();
 
     const [name, setName] = useState('');
-    const [stateLoc, setStateLoc] = useState('');    
+    const [stateLoc, setStateLoc] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [stateList, setStateList] = useState([]);
+
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        const getStates = async () => {
+            const sList = await api.getStates();
+            setStateList(sList);
+        }
+        getStates();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,12 +72,15 @@ const Signin = () => {
                     <label className="area">
                         <div className="area--title">State</div>
                         <div className="area--input">
-                            <select 
+                            <select
                                 value={stateLoc}
                                 onChange={e => setStateLoc(e.target.value)}
                                 required
                             >
                                 <option></option>
+                                {stateList.map((i, k) =>
+                                    <option key={k} value={i._id}>{i.name}</option>
+                                )}
                             </select>
                         </div>
                     </label>
@@ -109,7 +122,7 @@ const Signin = () => {
                                 required
                             />
                         </div>
-                    </label>                    
+                    </label>
 
                     <label className="area">
                         <div className="area--title"></div>

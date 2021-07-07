@@ -39,7 +39,7 @@ const apiFetchGet = async (endpoint, body = []) => {
         }
     }
 
-    const res = await fetch(`${BASEAPI+endpoint}?${qs.stringify(body)}`);
+    const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`);
     const json = await res.json();
 
     if (json.notallowed) {
@@ -59,6 +59,13 @@ const MarketAPI = {
         );
 
         return json;
+    },
+    getStates: async () => {
+        const json = await apiFetchGet(
+            '/states'
+        );
+
+        return json.states;
     }
 }
 
