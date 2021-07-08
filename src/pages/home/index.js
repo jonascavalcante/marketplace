@@ -1,11 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Home = () => {
+import { PageContainer } from '../../components/MainComponents';
+import { SearchArea, PageArea } from './styles';
+
+import useAPI from '../../helpers/marketAPI';
+
+const Signin = () => {
+
+    const api = useAPI();
+
     return (
         <>
-            <h1>Home</h1>
+            <SearchArea>
+                <PageContainer>
+                    
+                    <div className="searchBox">
+                        <form method="GET" action="/ads">
+                            <input type="text" name="q" placeholder="What do you need?" />
+                            <select name="state">
+                                <option></option>
+                            </select>
+                            <button>Search</button>
+                        </form>
+                    </div>
+                    
+                    <div className="categoryList">
+
+                    </div>
+
+                </PageContainer>
+            </SearchArea>
+            <PageContainer>
+                <PageArea>
+
+                    ...
+                    
+                </PageArea>
+            </PageContainer>
         </>
     );
 }
 
-export default Home;
+export default Signin;
