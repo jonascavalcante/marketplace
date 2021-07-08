@@ -54,7 +54,7 @@ const Signin = () => {
 
     return (
         <PageContainer>
-            <PageTitle>Sign Up</PageTitle>
+            <PageTitle>Página de Cadastro</PageTitle>
             <PageArea>
 
                 {error &&
@@ -64,7 +64,7 @@ const Signin = () => {
                 <form onSubmit={handleSubmit}>
 
                     <label className="area">
-                        <div className="area--title">Full name</div>
+                        <div className="area--title">Nome completo</div>
                         <div className="area--input">
                             <input
                                 disabled={disabled}
@@ -77,7 +77,7 @@ const Signin = () => {
                     </label>
 
                     <label className="area">
-                        <div className="area--title">State</div>
+                        <div className="area--title">Estado</div>
                         <div className="area--input">
                             <select
                                 value={stateLoc}
@@ -106,7 +106,7 @@ const Signin = () => {
                     </label>
 
                     <label className="area">
-                        <div className="area--title">Password</div>
+                        <div className="area--title">Senha</div>
                         <div className="area--input">
                             <input
                                 disabled={disabled}
@@ -119,7 +119,7 @@ const Signin = () => {
                     </label>
 
                     <label className="area">
-                        <div className="area--title">Confirm password</div>
+                        <div className="area--title">Confirmar senha</div>
                         <div className="area--input">
                             <input
                                 disabled={disabled}
@@ -134,7 +134,7 @@ const Signin = () => {
                     <label className="area">
                         <div className="area--title"></div>
                         <div className="area--input">
-                            <button disabled={disabled}>Register</button>
+                            <button disabled={disabled}>Cadastrar</button>
                         </div>
                     </label>
 

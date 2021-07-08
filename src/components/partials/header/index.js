@@ -29,26 +29,26 @@ const Header = () => {
                         {logged && 
                             <>
                                 <li>
-                                    <Link to="./my-account">My Account</Link>
+                                    <Link to="./my-account">Minha conta</Link>
                                 </li>
                                 <li>
-                                    <button onClick={handleLogout}>Logout</button>
+                                    <button onClick={handleLogout}>Sair</button>
                                 </li>
                                 <li>
-                                    <Link to="./post-an-ad" className="button">Post an ad</Link>
+                                    <Link to="./post-an-ad" className="button">Publicar um anúncio</Link>
                                 </li>
                             </>                        
                         }
                         {!logged &&
                             <>
                                 <li>
-                                    <Link to="./signin">Login</Link>
+                                    <Link to="./signin">Entrar</Link>
                                 </li>
                                 <li>
-                                    <Link to="./signup">Create an account</Link>
+                                    <Link to="./signup">Cadastrar-se</Link>
                                 </li>
                                 <li>
-                                    <Link to="./signin" className="button">Post an ad</Link>
+                                    <Link to="./signin" className="button">Publicar um anúncio</Link>
                                 </li>
                             </>
                         }

@@ -49,13 +49,13 @@ const Signin = () => {
 
                     <div className="searchBox">
                         <form method="GET" action="/ads">
-                            <input type="text" name="q" placeholder="What do you need?" />
+                            <input type="text" name="q" placeholder="Digite aqui o que você procura" />
                             <select name="state">
                                 {stateList.map((i, k) =>
                                     <option key={k} value={i.name}>{i.name}</option>
                                 )}
                             </select>
-                            <button>Search</button>
+                            <button>Pesquisar</button>
                         </form>
                     </div>
 

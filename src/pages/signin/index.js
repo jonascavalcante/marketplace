@@ -35,7 +35,7 @@ const Signin = () => {
 
     return (
         <PageContainer>
-            <PageTitle>Login</PageTitle>
+            <PageTitle>Entre com seu email e senha</PageTitle>
             <PageArea>
 
                 {error &&
@@ -56,7 +56,7 @@ const Signin = () => {
                         </div>
                     </label>
                     <label className="area">
-                        <div className="area--title">Password</div>
+                        <div className="area--title">Senha</div>
                         <div className="area--input">
                             <input
                                 disabled={disabled}
@@ -68,7 +68,7 @@ const Signin = () => {
                         </div>
                     </label>
                     <label className="area">
-                        <div className="area--title">Save password</div>
+                        <div className="area--title">Lembrar senha</div>
                         <div className="area--input">
                             <input
                                 disabled={disabled}
@@ -81,7 +81,7 @@ const Signin = () => {
                     <label className="area">
                         <div className="area--title"></div>
                         <div className="area--input">
-                            <button disabled={disabled}>Login</button>
+                            <button disabled={disabled}>Entrar</button>
                         </div>
                     </label>
                 </form>
