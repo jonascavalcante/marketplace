@@ -90,7 +90,28 @@ const SearchArea = styled.div`
 `;
 
 const PageArea = styled.div`
+    h2 {
+        font-size: 20px;
+    }
 
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+    
+        .aditem {
+            width: 25%;
+        }
+    }
+
+    .seeAllLink {
+        margin-top: 10px;
+
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+
+        color: #000;
+    }
 `;
 
 export { SearchArea, PageArea };

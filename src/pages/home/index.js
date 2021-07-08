@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PageContainer } from '../../components/MainComponents';
+import AdItem from '../../components/partials/adItem';
 import { SearchArea, PageArea } from './styles';
 
 import useAPI from '../../helpers/marketAPI';
@@ -12,6 +13,7 @@ const Signin = () => {
 
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [adList, setAdList] = useState([]);
 
     useEffect(() => {
         const getStates = async () => {
@@ -27,6 +29,17 @@ const Signin = () => {
             setCategories(cats);
         }
         getCategories();
+    }, []);
+
+    useEffect(() => {
+        const getRecentAds = async () => {
+            const json = await api.getAds({
+                sort: 'desc',
+                limit: 8
+            });
+            setAdList(json.ads);
+        }
+        getRecentAds();
     }, []);
 
     return (
@@ -59,9 +72,15 @@ const Signin = () => {
             </SearchArea>
             <PageContainer>
                 <PageArea>
-
-                    ...
-
+                    <h2>Anúncios recentes</h2>
+                    <div className="list">
+                        {adList.map((i, k) =>
+                            <AdItem key={k} data={i} />
+                        )}
+                    </div>
+                    <Link to="/ads" className="seeAllLink">Ver tudo</Link>
+                    <hr />
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer erat orci, mollis eu viverra id, euismod nec magna. Sed magna quam, fermentum eget blandit vitae, fermentum non libero. Praesent est ex, tempor quis convallis eu, porttitor at mi. Vivamus a mauris sit amet mi luctus imperdiet.
                 </PageArea>
             </PageContainer>
         </>
