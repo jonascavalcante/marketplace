@@ -96,6 +96,7 @@ const Signin = () => {
                             <a
                                 href={`mailto:${adInfo.userInfo.email}`}
                                 target="_blank"
+                                rel="noreferrer"
                                 className="contactSellerLink"
                             >
                                 Fale com o vendedor
