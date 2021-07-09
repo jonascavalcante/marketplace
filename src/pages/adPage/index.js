@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 import { PageContainer } from '../../components/MainComponents';
 import AdItem from '../../components/partials/adItem';
 
-import { PageArea, Fake, OthersArea } from './styles';
+import { PageArea, Fake, OthersArea, BreadCrumb } from './styles';
 
 import useAPI from '../../helpers/marketAPI';
 
@@ -41,6 +41,18 @@ const Signin = () => {
 
     return (
         <PageContainer>
+
+            {adInfo.category && 
+                <BreadCrumb>
+                    Você está aqui:
+                    <Link to='/'>Home</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}`}>{adInfo.stateName}</Link>
+                    /
+                    <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>
+                    / {adInfo.title}
+                </BreadCrumb>
+            }
 
             <PageArea>
 

@@ -127,4 +127,17 @@ const OthersArea = styled.div`
     }
 `;
 
-export { Fake, PageArea, OthersArea };
+const BreadCrumb = styled.div`
+    margin-top: 20px;
+    font-size: 13px;
+
+    a {
+        margin: 0 5px;
+        display: inline-block;
+        
+        text-decoration: underline;
+        color: #000;
+    }
+`;
+
+export { Fake, PageArea, OthersArea, BreadCrumb };
