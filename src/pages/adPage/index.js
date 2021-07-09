@@ -19,14 +19,21 @@ const Signin = () => {
     const [loading, setLoading] = useState(true);
     const [adInfo, setAdInfo] = useState({});
 
+    const getAdInfo = async (id) => {
+        const json = await api.getAd(id, true);
+        setAdInfo(json);
+        setLoading(false);
+    };
+
     useEffect(() => {
-        const getAdInfo = async (id) => {
-            const json = await api.getAd(id, true);
-            setAdInfo(json);
-            setLoading(false);
-        }
         getAdInfo(id);
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        getAdInfo(id);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
 
     const formatDate = (date) => {
         let cDate = new Date(date);
