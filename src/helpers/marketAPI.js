@@ -60,11 +60,11 @@ const MarketAPI = {
 
         return json;
     },
-    
+
     register: async (name, email, password, stateLoc) => {
         const json = await apiFetchPost(
             '/user/signup',
-            {name, email, password, state:stateLoc}
+            { name, email, password, state: stateLoc }
         )
         return json;
     },
@@ -88,6 +88,14 @@ const MarketAPI = {
         const json = await apiFetchGet(
             '/ad/list/',
             options
+        );
+        return json;
+    },
+
+    getAd: async (id, other = false) => {
+        const json = await apiFetchGet(
+            '/ad/item',
+            { id, other }
         );
         return json;
     }
