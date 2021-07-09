@@ -4,7 +4,9 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 import { PageContainer } from '../../components/MainComponents';
-import { PageArea, Fake } from './styles';
+import AdItem from '../../components/partials/adItem';
+
+import { PageArea, Fake, OthersArea } from './styles';
 
 import useAPI from '../../helpers/marketAPI';
 
@@ -39,6 +41,7 @@ const Signin = () => {
 
     return (
         <PageContainer>
+
             <PageArea>
 
                 <div className="leftSide">
@@ -110,10 +113,23 @@ const Signin = () => {
                         </>
                     }
 
-
                 </div>
 
             </PageArea>
+
+            <OthersArea>
+                {adInfo.others &&
+                    <>
+                        <h2>Outras ofertas do vendedor</h2>
+                        <div className="list">
+                            {adInfo.others.map((i, k) =>
+                                <AdItem key={k} data={i} />
+                            )}
+                        </div>
+                    </>
+                }
+            </OthersArea>
+
         </PageContainer>
     );
 }

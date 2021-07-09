@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Fake = styled.div`
+const Fake = styled.div`
     height: ${props => props.height || 20}px;
     background-color: #ddd;
 `;
 
-export const PageArea = styled.div`
+const PageArea = styled.div`
     margin-top: 20px;
     display: flex;
 
@@ -111,3 +111,20 @@ export const PageArea = styled.div`
         }
     }
 `;
+
+const OthersArea = styled.div`
+    h2 {
+        font-size: 20px;
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+
+        .aditem {
+            width: 25%;
+        }
+    }
+`;
+
+export { Fake, PageArea, OthersArea };
