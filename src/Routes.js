@@ -5,12 +5,13 @@ import Home from './pages/home';
 import About from './pages/about';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
+import AdPage from './pages/adPage';
 import NotFound from './pages/notFound';
 
 const Routes = () => {
     return (
         <Switch>
-            
+
             <Route exact path="/">
                 <Home />
             </Route>
@@ -25,6 +26,10 @@ const Routes = () => {
 
             <Route exact path="/signup">
                 <Signup />
+            </Route>
+
+            <Route exact path="/ad/:id">
+                <AdPage />
             </Route>
 
             <Route>
