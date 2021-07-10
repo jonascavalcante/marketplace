@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainComponents';
 import { PageArea } from './styles';
@@ -11,6 +11,8 @@ const AddAd = () => {
     const api = useAPI();
     const fileField = useRef();
 
+    const [categories, setCategories] = useState([]);
+
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
@@ -19,6 +21,15 @@ const AddAd = () => {
 
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        const getCategories = async () => {
+            const cats = await api.getCategories();
+            setCategories(cats);
+        }
+        getCategories();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,8 +73,15 @@ const AddAd = () => {
                     <label className="area">
                         <div className="area--title">Categoria</div>
                         <div className="area--input">
-                            <select>
-
+                            <select
+                                disabled={disabled}
+                                onChange={e => setCategory(e.target.value)}
+                                required
+                            >
+                                <option></option>
+                                {categories && categories.map(i =>
+                                    <option key={i._id} value={i._id}>{i.name}</option>
+                                )}
                             </select>
                         </div>
                     </label>
