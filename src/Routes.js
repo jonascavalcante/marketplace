@@ -34,6 +34,10 @@ const Routes = () => {
                 <AdPage />
             </RouteHandler>
 
+            <RouteHandler private exact path="/post-an-ad">
+                <About />
+            </RouteHandler>
+
             <RouteHandler>
                 <NotFound />
             </RouteHandler>
