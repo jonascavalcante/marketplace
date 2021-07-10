@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import MaskedInput from 'react-text-mask';
+import { createNumberMask } from 'text-mask-addons';
 
 import { PageContainer, PageTitle, ErrorMessage } from '../../components/MainComponents';
 import { PageArea } from './styles';
 
 import useAPI from '../../helpers/marketAPI';
-import { doLogin } from '../../helpers/AuthHandler';
 
 const AddAd = () => {
 
@@ -48,6 +49,14 @@ const AddAd = () => {
         setDisabled(false);
     }
 
+    const priceMask = createNumberMask({
+        prefix: 'R$ ',
+        includeThousandsSeparator: true,
+        thousandsSeparatorSymbol: '.',
+        allowDecimal: true,
+        decimalSymbol: ',',
+    });
+
     return (
         <PageContainer>
             <PageTitle>Publicar um anúncio</PageTitle>
@@ -88,7 +97,13 @@ const AddAd = () => {
                     <label className="area">
                         <div className="area--title">Preço</div>
                         <div className="area--input">
-                            ...
+                            <MaskedInput
+                                mask={priceMask}
+                                placeholder="R$ "
+                                disabled={disabled || priceNegotiable}
+                                value={price}
+                                onChange={e => setPrice(e.target.value)}
+                            />
                         </div>
                     </label>
                     <label className="area">
