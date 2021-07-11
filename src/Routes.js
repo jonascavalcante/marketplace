@@ -9,6 +9,7 @@ import Signin from './pages/signin';
 import Signup from './pages/signup';
 import AdPage from './pages/adPage';
 import AddAd from './pages/addAd';
+import Ads from './pages/ads';
 import NotFound from './pages/notFound';
 
 const Routes = () => {
@@ -37,6 +38,10 @@ const Routes = () => {
 
             <RouteHandler private exact path="/post-an-ad">
                 <AddAd />
+            </RouteHandler>
+
+            <RouteHandler exact path="/ads">
+                <Ads />
             </RouteHandler>
 
             <RouteHandler>
