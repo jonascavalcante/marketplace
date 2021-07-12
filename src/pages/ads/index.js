@@ -7,6 +7,8 @@ import { PageArea } from './styles';
 
 import useAPI from '../../helpers/marketAPI';
 
+let timer;
+
 const Signin = () => {
 
     const api = useAPI();
@@ -26,10 +28,24 @@ const Signin = () => {
     const [categories, setCategories] = useState([]);
     const [adList, setAdList] = useState([]);
 
+    const [resultOpacity, setResultOpacity] = useState(1);
+
+    const getAdsList = async () => {
+        const json = await api.getAds({
+            sort: 'desc',
+            limit: 9,
+            q,
+            cat,
+            state
+        });
+        setAdList(json.ads);
+        setResultOpacity(1);
+    }
+
     useEffect(() => {
-        
+
         let queryString = [];
-        
+
         if (q) {
             queryString.push(`q=${q}`);
         }
@@ -45,6 +61,14 @@ const Signin = () => {
         history.replace({
             search: `?${queryString.join('&')}`
         });
+
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(getAdsList, 2000);
+        setResultOpacity(0.3);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [q, cat, state])
 
@@ -66,18 +90,6 @@ const Signin = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        const getRecentAds = async () => {
-            const json = await api.getAds({
-                sort: 'desc',
-                limit: 8
-            });
-            setAdList(json.ads);
-        }
-        getRecentAds();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <>
             <PageContainer>
@@ -85,16 +97,16 @@ const Signin = () => {
 
                     <div className="leftSide">
                         <form method="GET">
-                            <input 
-                                type="text" 
-                                name="q" 
-                                placeholder="Digite aqui sua pesquisa" 
+                            <input
+                                type="text"
+                                name="q"
+                                placeholder="Digite aqui sua pesquisa"
                                 value={q}
                                 onChange={e => setQ(e.target.value)}
                             />
 
                             <div className="filterName">Estado:</div>
-                            <select 
+                            <select
                                 name="state"
                                 value={state}
                                 onChange={e => setState(e.target.value)}
@@ -108,8 +120,8 @@ const Signin = () => {
                             <div className="filterName">Categoria:</div>
                             <ul>
                                 {categories.map((i, k) =>
-                                    <li 
-                                        key={k} 
+                                    <li
+                                        key={k}
                                         className={cat === i.slug ? 'categoryItem active' : 'categoryItem'}
                                         onClick={() => setCat(i.slug)}
                                     >
@@ -123,7 +135,15 @@ const Signin = () => {
                     </div>
 
                     <div className="rightSide">
-                        ...
+                        <h2>Resultados</h2>
+                        <div
+                            className="list"
+                            style={{ opacity: resultOpacity }}
+                        >
+                            {adList.map((i, k) =>
+                                <AdItem key={k} data={i} />
+                            )}
+                        </div>
                     </div>
 
                 </PageArea>
