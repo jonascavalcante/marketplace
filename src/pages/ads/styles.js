@@ -82,6 +82,36 @@ const PageArea = styled.div`
                 width: 33%;
             }
         }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            .pagItem {
+                width: 30px;
+                height: 30px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                font-size: 14px;
+                border: 1px solid #000;
+                border-radius: 5px;
+                cursor: pointer;
+            
+                &:hover {
+                    border-color: #999;
+                }
+
+                &.active {
+                    background-color: #ccc;
+                }
+            }
+        }
     }
 `;
 

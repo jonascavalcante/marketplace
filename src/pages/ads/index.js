@@ -24,9 +24,12 @@ const Signin = () => {
     const [cat, setCat] = useState(query.get('cat') != null ? query.get('cat') : '');
     const [state, setState] = useState(query.get('state') != null ? query.get('state') : '');
 
+    const [adsTotal, setAdsTotal] = useState(0);
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
     const [adList, setAdList] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [resultOpacity, setResultOpacity] = useState(1);
     const [loading, setLoading] = useState(true);
@@ -41,9 +44,21 @@ const Signin = () => {
             state
         });
         setAdList(json.ads);
+        setAdsTotal(json.total);
         setResultOpacity(1);
         setLoading(false);
     }
+
+    useEffect(() => {
+
+        if (adList.length > 0) {
+            setPageCount(Math.ceil(adsTotal / adList.length));
+        } else {
+            setPageCount(0);
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [adsTotal])
 
     useEffect(() => {
 
@@ -71,6 +86,7 @@ const Signin = () => {
 
         timer = setTimeout(getAdsList, 2000);
         setResultOpacity(0.3);
+        setCurrentPage(1);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [q, cat, state])
@@ -92,6 +108,12 @@ const Signin = () => {
         getCategories();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    let pagination = [];
+    for (let i = 1; i <= pageCount; i++) {
+        pagination.push(i);
+
+    }
 
     return (
         <>
@@ -153,6 +175,18 @@ const Signin = () => {
                         >
                             {adList.map((i, k) =>
                                 <AdItem key={k} data={i} />
+                            )}
+                        </div>
+
+                        <div className="pagination">
+                            {pagination.map((i, k) =>
+                                <div
+                                    key={k}
+                                    className={i === currentPage ? 'pagItem active' : 'pagItem'}
+                                    onClick={() => setCurrentPage(i)}
+                                >
+                                    {i}
+                                </div>
                             )}
                         </div>
                     </div>
