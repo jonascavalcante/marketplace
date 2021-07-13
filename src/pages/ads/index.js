@@ -36,12 +36,16 @@ const Signin = () => {
 
     const getAdsList = async () => {
         setLoading(true);
+
+        let offset = (currentPage - 1) * 9;
+
         const json = await api.getAds({
             sort: 'desc',
             limit: 9,
             q,
             cat,
-            state
+            state,
+            offset 
         });
         setAdList(json.ads);
         setAdsTotal(json.total);
@@ -60,6 +64,12 @@ const Signin = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [adsTotal])
 
+    useEffect(() => {
+        setResultOpacity(0.3);
+        getAdsList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentPage])
+    
     useEffect(() => {
 
         let queryString = [];
@@ -162,7 +172,7 @@ const Signin = () => {
                     <div className="rightSide">
                         <h2>Resultados</h2>
 
-                        {loading &&
+                        {loading && adList.length === 0 &&
                             <div className="listWarning">Carregando...</div>
                         }
                         {!loading && adList.length === 0 &&

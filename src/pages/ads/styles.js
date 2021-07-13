@@ -89,6 +89,7 @@ const PageArea = styled.div`
             justify-content: center;
             flex-wrap: wrap;
             gap: 5px;
+            padding: 10px;
 
             .pagItem {
                 width: 30px;
