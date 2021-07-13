@@ -5,7 +5,9 @@ import { FooterArea } from './styles';
 const Header = () => {
     return ( 
         <FooterArea>
-            <h1>Footer</h1>
+            Todos os direitos reservados
+            <br />
+            MKT
         </FooterArea>
      );
 }
