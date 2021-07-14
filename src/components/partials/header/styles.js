@@ -89,4 +89,29 @@ export const HeaderArea = styled.header`
 
 
     }
+
+    @media (max-width: 600px) {
+
+        height: auto;
+
+        .container {
+            flex-direction: column;
+        }
+
+        .logo {
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        nav {
+            ul {
+                height: auto;
+                flex-direction: column;
+            
+                li {
+                    margin: 10px 20px;
+                }
+            }
+        }
+    }
 `;
